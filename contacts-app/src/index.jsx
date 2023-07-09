@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import ContactApp from './ContactApp';
+import ContactApp from './components/ContactApp';
 
 // styling
 import './style.css';

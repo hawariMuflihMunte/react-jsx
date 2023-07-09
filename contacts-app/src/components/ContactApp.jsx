@@ -1,5 +1,5 @@
 import ContactList from './ContactList';
-import { getData } from './data/data';
+import { getData } from '../utils/data';
 
 export default function ContactApp() {
   const contacts = getData();
