@@ -19,6 +19,7 @@ export default class NotesApp extends React.Component {
 
     this.createNewNote = this.createNewNote.bind(this);
     this.updateArchive = this.updateArchive.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   createNewNote(data) {
@@ -62,31 +63,44 @@ export default class NotesApp extends React.Component {
     });
   }
 
+  deleteNote(id) {
+    const updatedNotes = this.state.notes.filter((note) => note.id !== id);
+
+    this.setState({
+      notes: updatedNotes
+    });
+  }
+
   render() {
     const { notes } = this.state;
 
     const notesActive = notes.filter((note) => note.archived === false)
     const notesArchive = notes.filter((note) => note.archived === true)
 
-    console.log(notesActive);
-    console.log(notesArchive);
-
     return (
       <>
         <NotesHeader search="" />
-        <NotesInput createNewNote={this.createNewNote} />
         <main className="note-app__body">
+          <NotesInput createNewNote={this.createNewNote} />
           <h2>Catatan Aktif</h2>
           {notesActive.length
           ? (
-            <NotesList data={notesActive} updateArchive={this.updateArchive} />
+            <NotesList
+              data={notesActive}
+              updateArchive={this.updateArchive}
+              deleteNote={this.deleteNote}
+            />
           ) : (
             <NotesListEmpty />
           )}
           <h2>Arsip</h2>
           {notesArchive.length
           ? (
-            <NotesList data={notesArchive} updateArchive={this.updateArchive} />
+            <NotesList
+              data={notesArchive}
+              updateArchive={this.updateArchive}
+              deleteNote={this.deleteNote}
+            />
           ) : (
             <NotesListEmpty />
           )}

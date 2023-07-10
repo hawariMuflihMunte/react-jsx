@@ -3,7 +3,8 @@ import NotesItem from './NotesItem';
 
 export default function NotesList({
   data,
-  updateArchive
+  updateArchive,
+  deleteNote
 }) {
   return (
     <ul className="notes-list">
@@ -12,6 +13,7 @@ export default function NotesList({
           key={note.id}
           {...note}
           updateArchive={updateArchive}
+          deleteNote={deleteNote}
         />
       ))}
     </ul>

@@ -7,10 +7,17 @@ export default function NotesItem({
   createdAt,
   body,
   archived,
-  updateArchive // prop
+  updateArchive, // prop for updating
+  deleteNote // prop for deleting
 }) {
   function handleArchive() {
     updateArchive(id);
+  }
+
+  function handleDelete() {
+    confirm('Hapus catatan ini?')
+      ? deleteNote(id)
+      : '';
   }
 
   return (
@@ -25,7 +32,10 @@ export default function NotesItem({
           </p>
         </article>
         <section className="note-item__action">
-          <button className="note-item__delete-button">Delete</button>
+          <button
+            className="note-item__delete-button"
+            onClick={handleDelete}
+          >Delete</button>
           {archived ? (
             <button
               className="note-item__archive-button"
