@@ -17,6 +17,8 @@ export default class NotesSearch extends React.Component {
         query: event.target.value
       };
     });
+
+    this.props.onSearch(this.state.query);
   }
 
   render() {

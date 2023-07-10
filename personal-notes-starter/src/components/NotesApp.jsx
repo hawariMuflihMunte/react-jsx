@@ -14,12 +14,14 @@ export default class NotesApp extends React.Component {
 
     this.state = {
       notes: getInitialData(),
-      lastId: getInitialData().length
+      lastId: getInitialData().length,
+      searchQuery: ''
     }
 
     this.createNewNote = this.createNewNote.bind(this);
     this.updateArchive = this.updateArchive.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.searchNote = this.searchNote.bind(this);
   }
 
   createNewNote(data) {
@@ -71,15 +73,28 @@ export default class NotesApp extends React.Component {
     });
   }
 
+  searchNote(query) {
+    this.setState({
+      searchQuery: query
+    });
+  }
+
   render() {
-    const { notes } = this.state;
+    const { notes, searchQuery } = this.state;
 
     const notesActive = notes.filter((note) => note.archived === false)
     const notesArchive = notes.filter((note) => note.archived === true)
 
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    console.log(filteredNotes);
+
     return (
       <>
-        <NotesHeader search="" />
+        <NotesHeader
+          search={this.state.searchQuery}
+          onSearch={this.searchNote}
+        />
         <main className="note-app__body">
           <NotesInput createNewNote={this.createNewNote} />
           <h2>Catatan Aktif</h2>
