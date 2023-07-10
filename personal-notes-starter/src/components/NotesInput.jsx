@@ -24,23 +24,27 @@ export default class NotesInput extends React.Component {
     }
   }
 
+  onBodyChangeHandler(event) {
+    this.setState(() => {
+      return {
+        body: event.target.value
+      }
+    });
+  }
+
   onSubmitEventHandler(event) {
     event.preventDefault();
 
     const title = this.state.title;
     const body = this.state.body;
 
+    if (title === '' || body === '') {
+      return;
+    }
+
     this.props.createNewNote({
       title,
       body
-    });
-  }
-
-  onBodyChangeHandler(event) {
-    this.setState(() => {
-      return {
-        body: event.target.value
-      }
     });
   }
 
