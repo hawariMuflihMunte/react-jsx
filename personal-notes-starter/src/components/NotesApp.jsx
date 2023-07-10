@@ -13,15 +13,42 @@ export default class NotesApp extends React.Component {
     super(props);
 
     this.state = {
-      notes: getInitialData()
+      notes: getInitialData(),
+      lastId: getInitialData().length
     }
+
+    this.createNewNote = this.createNewNote.bind(this);
+  }
+
+  createNewNote(data) {
+    let newId = this.state.lastId + 1;
+    const {
+      title,
+      body
+    } = data;
+
+    const newNote = {
+      id: newId,
+      title,
+      body,
+      archived: false,
+      createdAt: +new Date()
+    }
+
+    this.setState((prevState) => ({
+      notes: [...prevState.notes, newNote],
+      lastId: newId
+    }));
+
+    console.log('Data received in parent: ', data);
+    console.log('Formatted data: ', newNote);
   }
 
   render() {
     return (
       <>
-        <NotesHeader search={"NULL"} />
-        <NotesInput title={"title"} body={"Test"} />
+        <NotesHeader search="NULL" />
+        <NotesInput createNewNote={this.createNewNote} />
         <main className="note-app__body">
           <h2>Catatan Aktif</h2>
           <NotesList data={this.state.notes} />
