@@ -1,7 +1,10 @@
 import React from 'react';
 import NotesItem from './NotesItem';
 
-export default function NotesList({ data, updateArchive }) {
+export default function NotesList({
+  data,
+  updateArchive
+}) {
   return (
     <ul className="notes-list">
       {data.map((note) => (

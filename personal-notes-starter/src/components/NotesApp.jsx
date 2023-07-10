@@ -65,15 +65,31 @@ export default class NotesApp extends React.Component {
   render() {
     const { notes } = this.state;
 
+    const notesActive = notes.filter((note) => note.archived === false)
+    const notesArchive = notes.filter((note) => note.archived === true)
+
+    console.log(notesActive);
+    console.log(notesArchive);
+
     return (
       <>
-        <NotesHeader search="NULL" />
+        <NotesHeader search="" />
         <NotesInput createNewNote={this.createNewNote} />
         <main className="note-app__body">
           <h2>Catatan Aktif</h2>
-          <NotesList data={notes} updateArchive={this.updateArchive} />
+          {notesActive.length
+          ? (
+            <NotesList data={notesActive} updateArchive={this.updateArchive} />
+          ) : (
+            <NotesListEmpty />
+          )}
           <h2>Arsip</h2>
-          <NotesListEmpty />
+          {notesArchive.length
+          ? (
+            <NotesList data={notesArchive} updateArchive={this.updateArchive} />
+          ) : (
+            <NotesListEmpty />
+          )}
         </main>
       </>
     );
