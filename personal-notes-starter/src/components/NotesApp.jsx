@@ -18,6 +18,7 @@ export default class NotesApp extends React.Component {
     }
 
     this.createNewNote = this.createNewNote.bind(this);
+    this.updateArchive = this.updateArchive.bind(this);
   }
 
   createNewNote(data) {
@@ -35,23 +36,42 @@ export default class NotesApp extends React.Component {
       createdAt: +new Date()
     }
 
+    // Register new note
     this.setState((prevState) => ({
       notes: [...prevState.notes, newNote],
       lastId: newId
     }));
+  }
 
-    console.log('Data received in parent: ', data);
-    console.log('Formatted data: ', newNote);
+  updateArchive(id) {
+    const { notes } = this.state;
+
+    const updatedNotes = notes.map((note) => {
+      if (note.id === id) {
+        return {
+          ...note,
+          archived: !note.archived
+        };
+      }
+
+      return note;
+    });
+
+    this.setState({
+      notes: updatedNotes
+    });
   }
 
   render() {
+    const { notes } = this.state;
+
     return (
       <>
         <NotesHeader search="NULL" />
         <NotesInput createNewNote={this.createNewNote} />
         <main className="note-app__body">
           <h2>Catatan Aktif</h2>
-          <NotesList data={this.state.notes} />
+          <NotesList data={notes} updateArchive={this.updateArchive} />
           <h2>Arsip</h2>
           <NotesListEmpty />
         </main>

@@ -5,8 +5,14 @@ export default function NotesItem({
   id,
   title,
   createdAt,
-  body
+  body,
+  archived,
+  updateArchive // prop
 }) {
+  function handleArchive() {
+    updateArchive(id);
+  }
+
   return (
     <li className="note-item">
         <article className="note-item__content">
@@ -20,7 +26,22 @@ export default function NotesItem({
         </article>
         <section className="note-item__action">
           <button className="note-item__delete-button">Delete</button>
-          <button className="note-item__archive-button">Archive</button>
+          {archived ? (
+            <button
+              className="note-item__archive-button"
+              onClick={handleArchive}
+            >
+              Move
+            </button>
+          ) : (
+            <button
+              className="note-item__archive-button"
+              onClick={handleArchive}
+            >
+              Archive
+            </button>
+          )
+          }
         </section>
     </li>
   );
