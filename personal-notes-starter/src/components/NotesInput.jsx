@@ -42,10 +42,19 @@ export default class NotesInput extends React.Component {
       return;
     }
 
-    this.props.createNewNote({
-      title,
-      body
-    });
+    if (confirm('Tambah catatan?')) {
+      this.props.createNewNote({
+        title,
+        body
+      });
+
+      this.setState(() => {
+        return {
+          title: '',
+          body: ''
+        }
+      });
+    }
   }
 
   render() {
