@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class ContactInput extends React.Component {
+class ContactInput extends React.Component {
   constructor(props) {
     super(props);
 
-    // inisialisasi state
     this.state = {
       name: '',
       tag: ''
@@ -56,3 +56,9 @@ export default class ContactInput extends React.Component {
     );
   }
 }
+
+ContactInput.propTypes = {
+  addContact: PropTypes.func.isRequired
+};
+
+export default ContactInput;

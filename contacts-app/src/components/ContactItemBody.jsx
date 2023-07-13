@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 
-export default function ContactItemBody({ name, tag }) {
+function ContactItemBody({ name, tag }) {
   return (
     <div className="contact-item__body">
       <h3 className="contact-item__title">{name}</h3>
@@ -7,3 +8,10 @@ export default function ContactItemBody({ name, tag }) {
     </div>
   );
 }
+
+ContactItemBody.propTypes = {
+  name: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired
+};
+
+export default ContactItemBody;
