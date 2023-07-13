@@ -15,7 +15,8 @@ export default class NotesApp extends React.Component {
     this.state = {
       notes: getInitialData(),
       lastId: getInitialData().length,
-      searchQuery: ''
+      searchQuery: '',
+      searchResult: []
     }
 
     this.createNewNote = this.createNewNote.bind(this);
@@ -74,20 +75,33 @@ export default class NotesApp extends React.Component {
   }
 
   searchNote(query) {
+    const { notes } = this.state;
+
+    const filteredNotes = query !== ''
+      ? notes.filter((note) =>
+          note.title.toLowerCase().includes(query.toLowerCase())
+        )
+      : [];
+
     this.setState({
-      searchQuery: query
+      searchQuery: query,
+      searchResult: filteredNotes
     });
   }
 
   render() {
-    const { notes, searchQuery } = this.state;
+    const { notes, searchQuery, searchResult } = this.state;
 
-    const notesActive = notes.filter((note) => note.archived === false)
-    const notesArchive = notes.filter((note) => note.archived === true)
+    const filteredNotes = searchQuery !== '' ? searchResult : notes;
 
-    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    const notesActive = filteredNotes.filter((note) => !note.archived);
+    const notesArchive = filteredNotes.filter((note) => note.archived);
 
-    console.log(filteredNotes);
+    // console.log(filteredNotes);
+    // console.log('Notes: ', notes);
+    // console.log('Nactive: ', notesActive);
+    // console.log('Narchive', notesArchive);
+    // console.log('Total: ', notesActive.length + notesArchive.length);
 
     return (
       <>
