@@ -64,9 +64,32 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {this.state.page === '/' && <HomePage />}
-        {this.state.page === '/about' && <AboutPage />}
-        {this.state.page === '/faq' && <FAQPage />}
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link target="/" navigate={this.navigate}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link target="/about" navigate={this.navigate}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link target="/faq" navigate={this.navigate}>
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <main>
+          {this.state.page === '/' && <HomePage />}
+          {this.state.page === '/about' && <AboutPage />}
+          {this.state.page === '/faq' && <FAQPage />}
+        </main>
       </>
     );
   }
