@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import PropTypes from 'prop-types';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import ContactApp from './components/ContactApp';
 
 // styling
@@ -16,30 +17,6 @@ function AboutPage() {
 
 function FAQPage() {
   return <p>This is FAQ page</p>;
-}
-
-function Link({
-  target,
-  navigate,
-  children
-}) {
-  return (
-    <a
-      href={target}
-      onClick={(event) => {
-        event.preventDefault();
-        navigate(target);
-      }}
-    >
-      {children}
-    </a>
-  );
-}
-
-Link.propTypes = {
-  target: PropTypes.string.isRequired,
-  navigate: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
 }
 
 class App extends React.Component {
@@ -68,27 +45,23 @@ class App extends React.Component {
           <nav>
             <ul>
               <li>
-                <Link target="/" navigate={this.navigate}>
-                  Home
-                </Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <Link target="/about" navigate={this.navigate}>
-                  About
-                </Link>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <Link target="/faq" navigate={this.navigate}>
-                  FAQ
-                </Link>
+                <Link to="/faq">FAQ</Link>
               </li>
             </ul>
           </nav>
         </header>
         <main>
-          {this.state.page === '/' && <HomePage />}
-          {this.state.page === '/about' && <AboutPage />}
-          {this.state.page === '/faq' && <FAQPage />}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+          </Routes>
         </main>
       </>
     );
@@ -96,4 +69,8 @@ class App extends React.Component {
 }
 
 const root = createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
