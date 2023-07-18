@@ -35,6 +35,12 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const contacts = this.state.contacts.filter((contact) => {
+      return contact.name.toLowerCase().includes(
+        this.state.keyword.toLowerCase()
+      );
+    });
+
     return (
       <section>
         <SearchBar
@@ -43,7 +49,7 @@ class HomePage extends React.Component {
         />
         <h2>Daftar Kontak</h2>
         <ContactList
-          contacts={this.state.contacts}
+          contacts={contacts}
           onDelete={this.onDeleteHandler}
         />
       </section>
