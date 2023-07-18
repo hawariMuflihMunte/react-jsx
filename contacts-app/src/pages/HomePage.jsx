@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactList from '../components/ContactList';
+import SearchBar from '../components/SearchBar';
 import { deleteContact, getContacts } from '../utils/data';
 
 class HomePage extends React.Component {
@@ -7,10 +8,12 @@ class HomePage extends React.Component {
     super(props);
 
     this.state = {
-      contacts: getContacts()
+      contacts: getContacts(),
+      keyword: ''
     };
 
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    this.onKeywordChangeHandler = this.onKeywordChangeHandler.bind(this);
   }
 
   onDeleteHandler(id) {
@@ -19,6 +22,14 @@ class HomePage extends React.Component {
     this.setState(() => {
       return {
         contacts: getContacts()
+      };
+    });
+  }
+
+  onKeywordChangeHandler(keyword) {
+    this.setState(() => {
+      return {
+        keyword
       }
     });
   }
@@ -26,6 +37,10 @@ class HomePage extends React.Component {
   render() {
     return (
       <section>
+        <SearchBar
+          keyword={this.state.keyword}
+          keywordChange={this.onKeywordChangeHandler}
+        />
         <h2>Daftar Kontak</h2>
         <ContactList
           contacts={this.state.contacts}
