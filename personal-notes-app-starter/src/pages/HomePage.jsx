@@ -1,6 +1,5 @@
 import { NoteItem } from '../components/NoteItem';
 import { getAllNotes } from '../utils/local-data';
-import { Link } from 'react-router-dom';
 
 export function HomePage() {
   const notes = getAllNotes().filter((note) => note.archived != true);
