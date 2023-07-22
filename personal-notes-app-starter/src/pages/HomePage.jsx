@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function HomePage() {
   return (
     <section className='homepage'>
@@ -8,7 +10,7 @@ export function HomePage() {
       <section className='notes-list'>
         <article className='note-item'>
           <h3 className='note-item__title'>
-            <a href='#'>Lorem</a>
+            <Link to='/details/12'>Lorem</Link>
           </h3>
           <p className='note-item__createdAt'>Kamis, 14 April 2022</p>
           <p className='note-item__body'>Lorem ipsum dolor sit amet.</p>
