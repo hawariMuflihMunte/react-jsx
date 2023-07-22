@@ -1,6 +1,10 @@
+import { NoteItem } from '../components/NoteItem';
+import { getAllNotes } from '../utils/local-data';
 import { Link } from 'react-router-dom';
 
 export function HomePage() {
+  const notes = getAllNotes().filter((note) => note.archived != true);
+
   return (
     <section className='homepage'>
       <h2>Catatan Aktif</h2>
@@ -8,13 +12,15 @@ export function HomePage() {
         <input type="text" placeholder='Cari berdasarkan judul ...' />
       </section>
       <section className='notes-list'>
-        <article className='note-item'>
-          <h3 className='note-item__title'>
-            <Link to='/details/12'>Lorem</Link>
-          </h3>
-          <p className='note-item__createdAt'>Kamis, 14 April 2022</p>
-          <p className='note-item__body'>Lorem ipsum dolor sit amet.</p>
-        </article>
+        {notes.map((note) => (
+          <NoteItem
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            createdAt={note.createdAt}
+            body={note.body}
+          />
+        ))}
       </section>
       <div className='homepage__action'>
         <button className='action' type='button' title='tambah'>
