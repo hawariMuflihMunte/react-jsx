@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { ArchivesPage } from './pages/ArchivePage';
+import { DetailPage } from './pages/DetailPage';
 
 function App() {
   return (
@@ -17,21 +20,11 @@ function App() {
         </nav>
       </header>
       <main>
-        <section className='homepage'>
-          <h2>Catatan Aktif</h2>
-          <section className='search-bar'>
-            <input type="text" placeholder='Cari berdasarkan judul...' />
-          </section>
-          <section className='notes-list'>
-            <article className='note-item'>
-              <h3 className='note-item__title'>
-                <a href="#">Lorem</a>
-              </h3>
-              <p className='note-item__createdAt'>Kamis, 14 April 2022</p>
-              <p className='note-item__body'>Lorem ipsum dolor sit amet.</p>
-            </article>
-          </section>
-        </section>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/archives' element={<ArchivesPage />} />
+          <Route path='/details/:id' element={<DetailPage />} />
+        </Routes>
       </main>
     </div>
   );
