@@ -8,12 +8,17 @@ export function HomePage() {
       <section className='notes-list'>
         <article className='note-item'>
           <h3 className='note-item__title'>
-            <a href="#">Lorem</a>
+            <a href='#'>Lorem</a>
           </h3>
           <p className='note-item__createdAt'>Kamis, 14 April 2022</p>
           <p className='note-item__body'>Lorem ipsum dolor sit amet.</p>
         </article>
       </section>
+      <div className='homepage__action'>
+        <button className='action' type='button' title='tambah'>
+          <svg stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" /></svg>
+        </button>
+      </div>
     </section>
   )
 };
