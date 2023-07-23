@@ -1,6 +1,6 @@
 import { ButtonSave } from "../components/ButtonSave";
 
-export function NewNote() {
+function NewNote() {
   return (
     <section className='add-new-page'>
       <div className='add-new-page__input'>
@@ -22,3 +22,5 @@ export function NewNote() {
     </section>
   )
 };
+
+export { NewNote };

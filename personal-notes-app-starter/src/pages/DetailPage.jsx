@@ -4,7 +4,7 @@ import { showFormattedDate } from '../utils';
 import { ButtonArchive } from '../components/ButtonArchive';
 import { ButtonDelete } from '../components/ButtonDelete';
 
-export function DetailPage() {
+function DetailPage() {
   const { id } = useParams();
   const {
     title,
@@ -23,4 +23,6 @@ export function DetailPage() {
       </div>
     </section>
   )
-};
+}
+
+export { DetailPage };

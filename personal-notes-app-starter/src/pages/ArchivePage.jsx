@@ -2,7 +2,7 @@ import { NoteItem } from "../components/NoteItem";
 import { SearchBar } from "../components/SearchBar";
 import { getAllNotes } from "../utils/local-data";
 
-export function ArchivesPage() {
+function ArchivesPage() {
   const notes = getAllNotes().filter((note) => note.archived);
   const checkFilteredData = notes.length > 0
     ? <section className='notes-list'>
@@ -27,4 +27,6 @@ export function ArchivesPage() {
       {checkFilteredData}
     </section>
   )
-};
+}
+
+export { ArchivesPage };
