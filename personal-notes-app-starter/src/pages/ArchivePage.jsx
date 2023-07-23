@@ -4,12 +4,8 @@ import { getAllNotes } from "../utils/local-data";
 
 export function ArchivesPage() {
   const notes = getAllNotes().filter((note) => note.archived);
-
-  return (
-    <section className='archives-page'>
-      <h2>Catatan Arsip</h2>
-      <SearchBar />
-      <section className='notes-list'>
+  const checkFilteredData = notes.length > 0
+    ? <section className='notes-list'>
         {notes.map((note) => (
           <NoteItem
             key={note.id}
@@ -20,6 +16,15 @@ export function ArchivesPage() {
           />
         ))}
       </section>
+    : <section className='notes-list-empty'>
+      <p className='notes-list__empty'>Tidak ada catatan</p>
+    </section>;
+
+  return (
+    <section className='archives-page'>
+      <h2>Catatan Arsip</h2>
+      <SearchBar />
+      {checkFilteredData}
     </section>
   )
 };
