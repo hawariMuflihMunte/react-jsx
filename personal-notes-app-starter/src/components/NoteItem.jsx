@@ -1,7 +1,8 @@
 import { showFormattedDate } from '../utils';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export function NoteItem({
+function NoteItem({
   id,
   title,
   createdAt,
@@ -17,3 +18,10 @@ export function NoteItem({
     </article>
   );
 }
+
+NoteItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired
+};
