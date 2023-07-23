@@ -25,3 +25,5 @@ NoteItem.propTypes = {
   body: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired
 };
+
+export { NoteItem };
